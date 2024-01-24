@@ -33,17 +33,23 @@ public static void createGraph(ArrayList<Edge> graph[]){
     graph[3].add(new Edge(3,2));
 }
 
+
     public static void main(String[] args) {
         int v=4;
         ArrayList<Edge> graph[] = new ArrayList[v];
         createGraph(graph);
 
         //print 2's neighbors
+        /*
+         *   
         for(int i=0;i<graph[2].size();i++)
         {
             Edge e = graph[2].get(i);
             System.out.println(e.dest+" ");
         }
+         * 
+         */
+      
     }
 }
 

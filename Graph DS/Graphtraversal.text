@@ -1,0 +1,14 @@
+BFS:
+TRAVERSAL first to its most current node NEIGHBORS
+*in direct level order TRAVERSAL
+Level order TRAVERSAL: Queue data stracure
+known: binary tree and Queue
+
+for TRAVERSAL
+* visited array of boolean type; to track 
+pull from Queue the current node and visit 
+
+if current node is not visited then print and true the visited array 
+and add current node NEIGHBORS in Queue
+
+DFS
