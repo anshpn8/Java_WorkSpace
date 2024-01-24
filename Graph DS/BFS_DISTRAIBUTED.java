@@ -3,7 +3,7 @@ import java.util.*;
 //using adjacency list
 //1.unweighted and undirected graph
 
-public class BFS{
+public class BFS_DISTRIBUTED{
     static class Edge {
         int src;
         int dest;
@@ -44,10 +44,10 @@ public static void createGraph(ArrayList<Edge> graph[]){
     graph[6].add(new Edge(6,5));
 }
 
-public static void bfs(ArrayList<Edge> graph[], int v) {
+public static void bfs(ArrayList<Edge> graph[], int v,boolean viz[], int start) {
     Queue<Integer> q=new LinkedList<>();
-    boolean viz[]=new boolean[v];
-    q.add(0);
+    
+    q.add(start);
 
     while(!q.isEmpty()) {
         int curr = q.remove();
@@ -80,8 +80,14 @@ public static void bfs(ArrayList<Edge> graph[], int v) {
         int v=7;
         ArrayList<Edge> graph[] = new ArrayList[v];
         createGraph(graph);
+        boolean viz[]=new boolean[v];
+        for(int i=0;i<v;i++)
+        {
+            if(viz[i]==false)
+            bfs(graph,v,viz,i);
 
-        bfs(graph,v);
+        }
+        
         System.out.println();
     }
 }
