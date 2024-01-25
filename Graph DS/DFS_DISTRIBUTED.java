@@ -3,7 +3,7 @@ import java.util.*;
 //using adjacency list
 //1.unweighted and undirected graph
 
-public class DFS{
+public class DFS_DISTRIBUTED{
     static class Edge {
         int src;
         int dest;
@@ -75,7 +75,12 @@ public static void dfs(ArrayList<Edge> graph[],int curr ,boolean viz[]) {
         ArrayList<Edge> graph[] = new ArrayList[v];
         createGraph(graph);
         boolean viz[] = new boolean[v];
-        dfs(graph,0,viz);
+        for(int i=0;i<v;i++)
+        {
+            if(viz[i]==false)
+            dfs(graph,i,viz);
+        }
+        System.out.println();
 
     }
 }
