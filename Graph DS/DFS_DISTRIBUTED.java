@@ -45,8 +45,6 @@ public static void createGraph(ArrayList<Edge> graph[]){
 }
 
 public static void dfs(ArrayList<Edge> graph[],int curr ,boolean viz[]) {
-   
-    
             System.out.print(curr+" ");
             viz[curr]=true;
 
