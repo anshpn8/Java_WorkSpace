@@ -3,7 +3,7 @@ import java.util.*;
 //using adjacency list
 //1.unweighted and undirected graph
 
-public class BFS{
+public class PrintallPath{
     static class Edge {
         int src;
         int dest;
@@ -17,7 +17,6 @@ public class BFS{
 
 public static void createGraph(ArrayList<Edge> graph[]){
     //the given for loop is required for handling the null pointer exception
-    // because  there may be an null pointer ; since there may be none of edge may exist
     for(int i = 0; i < graph.length; i++)
     graph[i]=new ArrayList<Edge>();
 
@@ -45,30 +44,36 @@ public static void createGraph(ArrayList<Edge> graph[]){
     graph[6].add(new Edge(6,5));
 }
 
-public static void bfs(ArrayList<Edge> graph[], int v) {
-    Queue<Integer> q=new LinkedList<>();
-    boolean viz[]=new boolean[v];
-    q.add(0);
-
-    while(!q.isEmpty()) {
-        int curr = q.remove();
-        if(viz[curr]==false){
+public static void dfs(ArrayList<Edge> graph[],int curr ,boolean viz[]) {
             System.out.print(curr+" ");
             viz[curr]=true;
 
             for(int i=0;i<graph[curr].size();i++){
                 Edge e = graph[curr].get(i);
-                q.add(e.dest);
+                if(viz[e.dest]==false)
+                dfs(graph,e.dest,viz);
             }
+}
+
+public static void printallpath(ArrayList<Edge> graph[],boolean viz[],int curr,String path,int tar) {
+    if(curr==tar) {
+        System.out.println(path);
+        return;
+    }
+    for(int i=0;i<graph[curr].size();i++){
+        Edge e = graph[curr].get(i);
+        if(!viz[e.dest]){
+            viz[curr] = true;
+            printallpath(graph,viz,e.dest,path+e.dest,tar);
+            viz[curr] = false;
         }
     }
+
 }
 
 
 
     public static void main(String[] args) {
-
-
         /*
          * 
          *     1------3
@@ -81,10 +86,8 @@ public static void bfs(ArrayList<Edge> graph[], int v) {
         int v=7;
         ArrayList<Edge> graph[] = new ArrayList[v];
         createGraph(graph);
-
-        bfs(graph,v);
-        System.out.println();
+        int src=0,tar=5;
+        printallpath(graph, new boolean[v], src, "0", tar);
+        
     }
 }
-
-
